@@ -9,19 +9,17 @@ using UnityEngine;
 /// * Timer Once
 /// * Timer Repeat
 /// </summary>
-
+using PermissionsManager;
 namespace TimerEdit
 {
     public class TimerEditStart
-    {
-
+    {        
         //timer
         private static GameObject LoadTime;
-
+        
         //active
         public static void Init()
         {
-
             // clear olds timers actives
             TimerEvento[] timersAtual = UnityEngine.Object.FindObjectsOfType<TimerEvento>();
             foreach (TimerEvento obj2 in timersAtual)

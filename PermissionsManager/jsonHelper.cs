@@ -8,6 +8,7 @@ namespace PermissionsManager
 {
     class JsonHelper
     {
+        
         public static T Deserialize<T>(string stringJson)
         {
             return JsonConvert.DeserializeObject<T>(stringJson);

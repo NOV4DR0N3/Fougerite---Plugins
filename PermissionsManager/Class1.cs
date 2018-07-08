@@ -1,9 +1,11 @@
-﻿namespace PermissionsManager
+﻿using System;
+using Fougerite;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+namespace PermissionsManager
 {
-    using System;
     using Fougerite;
-    using System.Collections.Generic;
-    using System.IO;
     public class PermissionModule : Fougerite.Module
     {
         public override string Author
@@ -289,13 +291,13 @@
         }
         public static Dictionary<ulong, List<string>> permLista = new Dictionary<ulong, List<string>>();
         public static Dictionary<string, Groups> groupLista = new Dictionary<string, Groups>();
-        public Groups gp;
+        public static Groups gp;
         public class Groups
         {
             public List<string> permissions { get; set; } = new List<string>();
             public List<ulong> users { get; set; } = new List<ulong>();
         }
-        public Groups getGroup(string groupname)
+        public static Groups getGroup(string groupname)
         {
             if (!groupLista.TryGetValue(groupname, out gp))
             {
@@ -305,11 +307,17 @@
             return gp;
         }
 
-        public bool hasPermission(ulong steamid, string permission)
+        public static bool hasPermission(ulong steamid, string permission)
         {
             foreach (KeyValuePair<string, Groups> pair in groupLista)
             {
-                if (pair.Value.permissions.Contains(permission)) return true;
+                if (pair.Value.permissions.Contains(permission))
+                {
+                    if (pair.Value.users.Contains(steamid))
+                    {
+                        return true;
+                    }
+                }
             }
 
             if (permLista.ContainsKey(steamid))
@@ -319,7 +327,7 @@
             }
             return false;
         }
-        public bool addPermission(ulong steamid, string permission, string group = null)
+        public static bool addPermission(ulong steamid, string permission, string group = null)
         {
             if (group != null)
             {
@@ -357,7 +365,7 @@
             }
             return false;
         }
-        public bool remPermission(ulong steamid, string permission, string group = null)
+        public static bool remPermission(ulong steamid, string permission, string group = null)
         {
             if (group != null)
             {
