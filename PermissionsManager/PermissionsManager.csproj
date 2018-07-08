@@ -40,6 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Desktop\SmithRust\rust_server_Data\Managed\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ServerControl">
+      <HintPath>..\..\ServerControl\ServerControl\bin\Debug\ServerControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
