@@ -6,14 +6,14 @@ using System;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
-
+using JsonC;
 namespace PermissionsManager
 {
     public class Configuration
     {
         public static string GetAbsoluteFilePath(string fileName)
         {
-            return Path.Combine(PermissionModule.ConfigssFolder, fileName);
+            return Path.Combine(PermissionModule.folderPlugin, fileName);
         }
         public static T ReadyConfigChecked<T>(T obj, string pathFile)
         {
@@ -49,7 +49,7 @@ namespace PermissionsManager
         }
         public static void carregarConfigs()
         {
-            PermissionsManager.PermissionModule.permLista = Configuration.ReadyConfigChecked<Dictionary<ulong, List<string>>>(PermissionsManager.PermissionModule.permLista, "data/permissions_list.json");
+            PermissionsManager.PermissionModule.player_permissions = Configuration.ReadyConfigChecked<Dictionary<ulong, PermissionModule.PlayersPermissions>>(PermissionsManager.PermissionModule.player_permissions, "data/permissions_list.json");
             PermissionsManager.PermissionModule.groupLista = Configuration.ReadyConfigChecked<Dictionary<string, PermissionsManager.PermissionModule.Groups>>(PermissionsManager.PermissionModule.groupLista, "data/groups_list.json");
         }
         public static void salvarConfigs()
@@ -59,14 +59,12 @@ namespace PermissionsManager
                 Logger.Log("Saving group_lists.");
                 JsonHelper.SaveFile(PermissionsManager.PermissionModule.groupLista, Configuration.GetAbsoluteFilePath("data/groups_list.json"));
             }
-            if (PermissionsManager.PermissionModule.permLista.Count != 0)
+            if (PermissionsManager.PermissionModule.player_permissions.Count != 0)
             {
                 Logger.Log("Saving permissions_list.");
-                JsonHelper.SaveFile(PermissionsManager.PermissionModule.permLista, Configuration.GetAbsoluteFilePath("data/permissions_list.json"));
+                JsonHelper.SaveFile(PermissionsManager.PermissionModule.player_permissions, Configuration.GetAbsoluteFilePath("data/permissions_list.json"));
             }
         }
-
-
     }
 }
 

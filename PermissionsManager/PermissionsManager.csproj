@@ -33,8 +33,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\Desktop\Dlls\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Fougerite">
-      <HintPath>..\..\..\..\..\Desktop\Dlls\Fougerite.dll</HintPath>
+    <Reference Include="Fougerite, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Dlls Fougerite\Fougerite.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
